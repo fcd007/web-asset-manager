@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import styled, { css } from 'styled-components';
 
 import Tooltip from '../Tooltip';
@@ -10,17 +9,16 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  font-size: 18px;
-
+  background: #eff5f8;
   border-radius: 10px;
   padding: 16px;
   width: 100%;
+
+  border: 2px solid #0b447c;
+  color: #666360;
+
   display: flex;
   align-items: center;
-
-  color: #666360;
-  background: #eff5f8;
-  border: 2px solid #0b447c;
 
   & + div {
     margin-top: 8px;
@@ -39,20 +37,20 @@ export const Container = styled.div<ContainerProps>`
       border-color: #ff9000;
     `}
 
-    ${props =>
+  ${props =>
     props.isFilled &&
     css`
       color: #ff9000;
     `}
 
-    input {
+  input {
     flex: 1;
     background: transparent;
     border: 0;
-    color: #23c23;
+    color: #1e2f38;
 
     &::placeholder {
-      color: #1e2f38;
+      color: #666360;
     }
   }
 
@@ -70,8 +68,8 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    color: #fff;
     background: #c53030;
+    color: #fff;
 
     &::before {
       border-color: #c53030 transparent;

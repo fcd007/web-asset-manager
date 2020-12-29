@@ -1,12 +1,7 @@
-/* eslint-disable import/extensions */
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import ToastContainer from '../components/ToastContainer';
+import { uuid } from 'uuidv4';
 
-interface ToastContext {
-  addToast(message: Omit<ToastMessage, 'id'>): void;
-  removeToast(id: string): void;
-}
+import ToastContainer from '../components/ToastContainer';
 
 export interface ToastMessage {
   id: string;
@@ -15,13 +10,19 @@ export interface ToastMessage {
   description?: string;
 }
 
-const ToastContext = createContext<ToastContext>({} as ToastContext);
+interface ToastContextData {
+  addToast(message: Omit<ToastMessage, 'id'>): void;
+  removeToast(id: string): void;
+}
+
+const ToastContext = createContext<ToastContextData>({} as ToastContextData);
 
 const ToastProvider: React.FC = ({ children }) => {
   const [messages, setMessages] = useState<ToastMessage[]>([]);
+
   const addToast = useCallback(
     ({ type, title, description }: Omit<ToastMessage, 'id'>) => {
-      const id = uuidv4();
+      const id = uuid();
 
       const toast = {
         id,
@@ -29,7 +30,7 @@ const ToastProvider: React.FC = ({ children }) => {
         title,
         description,
       };
-      // return state old and function
+
       setMessages(state => [...state, toast]);
     },
     [],
@@ -40,23 +41,18 @@ const ToastProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <ToastContext.Provider
-      value={{
-        addToast,
-        removeToast,
-      }}
-    >
+    <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
       <ToastContainer messages={messages} />
     </ToastContext.Provider>
   );
 };
 
-function useToast(): ToastContext {
+function useToast(): ToastContextData {
   const context = useContext(ToastContext);
 
   if (!context) {
-    throw new Error('useToast must be within a ToastProvider');
+    throw new Error('useToast must be used within a ToastProvider');
   }
 
   return context;
