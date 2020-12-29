@@ -25,12 +25,12 @@
 - Para atualizar sua senhao usuário deve informar a senha antiga;
 - Para atualizar sua senha, o usuário precisa confirmar a nova senha;
 
-# Painel do prestador
+# Painel do funcionário
 **RF: Requisitos Funcionais**
 
-- O usuário deve poder listar seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que ocorrer um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+- O usuário deve poder listar seus assets específico;
+- O funcionário deve receber uma notificação sempre que ocorrer um novo asset atribuído;
+- O funcionário deve poder visualizar as notificações não lidas;
 
 **RNF: Requisitos Não Funcionais**
 
@@ -42,22 +42,16 @@
 
 - O notificação deve ter um status lida ou não-lida para o controle do prestador;
 
-# Agendamento de serviços
+# Asset Manager
 **RF: Requisitos Funcionais**
 
-- O usuário deve poder listar todos os prestadores de serviços cadastrados;
-- O usuário deve poder listar os dias de um mês com horário disponível do prestado;
-- O usuário deve poder listar horários disponíveis em um dia específico de um prestador;
-- O usuário deve poder um novo agendamento com um prestador;
+- O usuário deve poder listar todos os ativos cadastrados;
+- O usuário deve poder listar os itens disponível para mudança;
+- O usuário deve poder listar disponíveis por id, nome;
+- O usuário deve poder realizar um cadastro de funcionários ou movimentações;
 
 **RNF: Requisitos Não Funcionais**
 
-- A listagem de prestadores deve ser armazenado em cache;
+- A listagens deve ser armazenadas em cache;
 
 **RN: Regras de Negócio**
-
-- Cada agendamento deve durar uma hora - 1h;
-- Os agendamentos deve estar disponíveis entre 8h00 às 18h00, primeiro horário 8h, último 17h;
-- O usuário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um que já passou;
-- O usuário não pode agendar serviços consigo mesmo, ou seja, ele não pode atender ele mesmo;
